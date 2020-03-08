@@ -30,13 +30,22 @@ class Films
   def customers()
     sql = "SELECT customers.* FROM customers INNER JOIN tickets ON tickets.customers_id = customers.id WHERE films_id = $1"
     values = [@id]
-    customer = SqlRunner.run(sql, values)
-    return Customers.map_items(customer)
+    customers = SqlRunner.run(sql, values)
+    results = customers.map {|customers| Customers.new(customers)}
+    return results
   end
 
-  def Films.map_items(customer_data)
-    result = customer_data.map {|customer| Customers.new(customer)}
-    return result
+  # def Films.map_items(customers_data)
+  #   result = customers_data.map {|customer| Customers.new(customer)}
+  #   return result
+  # end
+
+  def update
+    sql = "UPDATE screenings SET (
+          title, price) = ($1, $2)
+          WHERE id = $3"
+    values = [@title, @price, @id]
+    SqlRunner.run(sql, values)
   end
 
   def self.all()

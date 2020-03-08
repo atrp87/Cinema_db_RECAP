@@ -42,6 +42,14 @@ class Tickets
     return  Films.new(film)
   end
 
+  def update
+    sql = "UPDATE screenings SET (
+          customers_id, films_id) = ($1, $2)
+          WHERE id = $3"
+    values = [@customers_id, @films_id, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def self.all()
     sql = "SELECT * FROM tickets"
     ticket = SqlRunner.run(sql)

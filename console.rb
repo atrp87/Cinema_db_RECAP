@@ -8,7 +8,7 @@ Tickets.delete_all()
 Customers.delete_all()
 Films.delete_all()
 
-customer1 = Customers.new({ 'name' => 'Tom', 'funds' => 60 })
+customer1 = Customers.new({ 'name' => 'JJ', 'funds' => 60 })
 customer2 = Customers.new({ 'name' => 'Jessica', 'funds' => 80 })
 customer3 = Customers.new({ 'name' => 'Dave', 'funds' => 20 })
 
@@ -33,6 +33,8 @@ ticket1.save()
 ticket2.save()
 ticket3.save()
 ticket4.save()
+
+# screening1 = Films.new({'user1' => '#{ }'})
 
 binding.pry
 nil
